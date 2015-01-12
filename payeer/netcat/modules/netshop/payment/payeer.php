@@ -1,4 +1,4 @@
-<?
+<?php
 
 class Payment_payeer 
 {
