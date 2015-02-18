@@ -24,7 +24,8 @@ class Payment_payeer
 		$m_shop = $MODULE_VARS['payeer']['MerchantID'];
 		$m_key = $MODULE_VARS['payeer']['SecretKey'];
 		$m_orderid = htmlspecialchars($shop->OrderID);
-		$m_amount = str_replace(',', '.', htmlspecialchars($shop->CartSum()));
+		$m_amount = htmlspecialchars($shop->CartSum());
+		$m_amount = number_format($m_amount, 2, '.', '');
 		$m_curr = $MODULE_VARS['payeer']['Currency'];
 		$m_desc = base64_encode($MODULE_VARS['payeer']['OrderDescription']);
 		$arHash = array(
