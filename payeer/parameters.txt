@@ -1,8 +1,0 @@
-﻿MerchantURL=//payeer.com/merchant/
-MerchantID=
-SecretKey=
-Currency=RUB
-OrderDescription= 
-LogFile=
-IPfilter=
-Email=
