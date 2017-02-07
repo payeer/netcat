@@ -8,6 +8,7 @@ define("NETCAT_MODULE_PAYMENT_PAYEER_MSG_THIS_IP", "   IP текущего се�
 define("NETCAT_MODULE_PAYMENT_PAYEER_MSG_HASHES_NOT_EQUAL", " - не совпадают цифровые подписи");
 define("NETCAT_MODULE_PAYMENT_PAYEER_MSG_WRONG_AMOUNT", " - неправильная сумма");
 define("NETCAT_MODULE_PAYMENT_PAYEER_MSG_WRONG_CURRENCY", " - неправильная валюта");
+define("NETCAT_MODULE_PAYMENT_PAYEER_MSG_WRONG_ORDER_PAYEED", " - заказ уже оплачен");
 define("NETCAT_MODULE_PAYMENT_PAYEER_MSG_STATUS_FAIL", " - статус платежа не является success");
 define("NETCAT_MODULE_PAYMENT_PAYEER_MSG_ERR_REASONS", "Не удалось провести платёж через систему Payeer по следующим причинам:");
 define("NETCAT_MODULE_PAYMENT_PAYEER_MSG_SUBJECT", "Ошибка оплаты");
