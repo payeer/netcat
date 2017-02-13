@@ -195,12 +195,6 @@ class nc_payment_system_payeer extends nc_payment_system
 				$err = true;
 			}
 			
-			if ($invoice->get('status') == 6)
-			{
-				$message .= nc_payment_system_payeer::MSG_WRONG_ORDER_PAYEED . "\n";
-				$err = true;
-			}
-			
 			if (!$err)
 			{
 				$order_curr = ($invoice->get_currency() == 'RUR') ? 'RUB' : $invoice->get_currency();
@@ -227,9 +221,14 @@ class nc_payment_system_payeer extends nc_payment_system
 					switch ($this->get_response_value('m_status'))
 					{
 						case 'success':
-							$invoice->set('status', nc_payment_invoice::STATUS_SUCCESS);
-							$invoice->save();
-							$this->on_payment_success($invoice);
+						
+							if ($invoice->get('status') != 6)
+							{
+								$invoice->set('status', nc_payment_invoice::STATUS_SUCCESS);
+								$invoice->save();
+								$this->on_payment_success($invoice);
+							}
+
 							break;
 							
 						default:
