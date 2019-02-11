@@ -13,6 +13,7 @@ class nc_payment_system_payeer extends nc_payment_system
 	const MSG_HASHES_NOT_EQUAL = NETCAT_MODULE_PAYMENT_PAYEER_MSG_HASHES_NOT_EQUAL;
 	const MSG_WRONG_AMOUNT = NETCAT_MODULE_PAYMENT_PAYEER_MSG_WRONG_AMOUNT;
 	const MSG_WRONG_CURRENCY = NETCAT_MODULE_PAYMENT_PAYEER_MSG_WRONG_CURRENCY;
+	const MSG_WRONG_ORDER_PAYEED = NETCAT_MODULE_PAYMENT_PAYEER_MSG_WRONG_ORDER_PAYEED;
 	const MSG_STATUS_FAIL = NETCAT_MODULE_PAYMENT_PAYEER_MSG_STATUS_FAIL;
 	const MSG_ERR_REASONS = NETCAT_MODULE_PAYMENT_PAYEER_MSG_ERR_REASONS;
 	const MSG_SUBJECT = NETCAT_MODULE_PAYMENT_PAYEER_MSG_SUBJECT;
@@ -212,7 +213,7 @@ class nc_payment_system_payeer extends nc_payment_system
 					$message .= nc_payment_system_payeer::MSG_WRONG_CURRENCY . "\n";
 					$err = true;
 				}
-				
+
 				// проверка статуса
 				
 				if (!$err)
@@ -220,9 +221,14 @@ class nc_payment_system_payeer extends nc_payment_system
 					switch ($this->get_response_value('m_status'))
 					{
 						case 'success':
-							$invoice->set('status', nc_payment_invoice::STATUS_SUCCESS);
-							$invoice->save();
-							$this->on_payment_success($invoice);
+						
+							if ($invoice->get('status') != 6)
+							{
+								$invoice->set('status', nc_payment_invoice::STATUS_SUCCESS);
+								$invoice->save();
+								$this->on_payment_success($invoice);
+							}
+
 							break;
 							
 						default:
